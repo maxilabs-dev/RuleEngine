@@ -12,7 +12,6 @@ class QuerySerializer {
   }
   isValid() {
     this.data = this.getData();
-    console.log(this.data);
     if (!this.data || this.data === undefined) {
       this.error = { errorMsg: `${this.queryParam} was not specified`, code: 400 };
       return false;

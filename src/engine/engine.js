@@ -1,7 +1,7 @@
 /** @format */
 
-const { DATABASE_CONNECTION, DATABASE_DIALECT } = require("../../config");
 const { Database } = require("../database/database");
+const { DATABASE_CONNECTION, DATABASE_DIALECT } = require("../../config");
 
 class Engine {
   constructor(database_connection = DATABASE_CONNECTION, database_dialect = DATABASE_DIALECT) {
@@ -22,7 +22,8 @@ class Engine {
     return Isconnected;
   }
   async runRawQuery(rawQuery) {
-    return await this.db.runRawQuery(rawQuery);
+    const rawResult= await this.db.runRawQuery(rawQuery);
+    return rawResult? :
   }
 }
 

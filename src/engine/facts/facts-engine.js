@@ -1,7 +1,7 @@
 /** @format */
 
-const { promisify } = require("util");
-const { Engine } = require("./engine");
+const { Engine } = require("../engine");
+const { FactsQuerySets } = require("./facts-querysets");
 
 class FactSerializer {
   constructor(name, value) {
@@ -16,29 +16,26 @@ class FactSerializer {
 }
 
 class FactQueryGenerator {
-  constructor(tableName, rawQuery) {
+  constructor(tableName) {
     this.tableName = tableName;
   }
-  getQuery(rawQuery) {}
+  getQuery(rawQuery) {
+    return rawQuery.replace("$(table-name)", this.tableName);
+  }
 }
 
 class FactsEngine extends Engine {
   constructor() {
     super();
     this.querySets = new FactsQuerySets();
-    this.queryGenerator = new FactQueryGenerator(rawQuery);
-    promisify(this.db.runRawQuery).bind(this.db);
   }
 
-  async runRawQuery(rawQuery) {
-    return await this.db.runRawQuery(rawQuery);
-  }
-
-  getAnalysisResponse(tableName) {
+  async getAnalysisResponse(tableName) {
     const querySets = this.querySets.getLogicQueries();
+    const queryGenerator = new FactQueryGenerator(tableName);
     let results = {};
     for (const [name, rawQuery] of Object.entries(querySets)) {
-      const result = await this.runRawQuery(this.queryGenerator.getQuery(rawQuery));
+      const result = await this.runRawQuery(queryGenerator.getQuery(rawQuery));
       const factResult = new FactSerializer(name, result).getData();
       results = { ...results, ...factResult };
     }

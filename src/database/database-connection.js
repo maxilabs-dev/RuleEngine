@@ -46,8 +46,8 @@ class DatabaseStringConnection {
   getDatabase() {
     return this.getParser().getDatabase();
   }
-  getName() {
-    return this.getParser().getName();
+  getUserName() {
+    return this.getParser().getUserName();
   }
   getPassword() {
     return this.getParser().getPassword();

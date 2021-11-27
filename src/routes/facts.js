@@ -1,6 +1,6 @@
 /** @format */
 const express = require("express");
-const { FactsEngine } = require("../engine/facts-engine");
+const { FactsEngine } = require("../engine/facts/facts-engine");
 
 const { QuerySerializer } = require("../serializer");
 
@@ -8,7 +8,7 @@ class FactsRouterSerializer extends QuerySerializer {
   constructor(request, error = {}, queryParam = "tableName") {
     super(request, error, queryParam);
   }
-  getResponse() {
+  getResponseData() {
     const tableName = this.data;
     const factsEngine = new FactsEngine();
     return factsEngine.getAnalysis(tableName);
@@ -23,8 +23,8 @@ FactsRouter.get("/", (request, response) => {
     response.status(factsSerializer.error.code).send(factsSerializer.error.errorMsg);
     return;
   }
-  const response = factsSerializer.getResponse();
-  response.send(response);
+  const data = factsSerializer.getResponseData();
+  response.send(data);
   return;
 });
 
