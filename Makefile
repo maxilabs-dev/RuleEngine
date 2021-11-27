@@ -20,16 +20,6 @@ else
 endif
 BACKEND_DIR:="$(PWD)"
 
-# Functions
-define save_db_file
-    $(VERBOSE) docker-compose exec database bash -c 'pg_dump $(DATABASE_URL) --data-only --file=./database/mock_db/data.sql'
-    $(VERBOSE) docker-compose exec database bash -c 'pg_dump $(DATABASE_URL) --schema-only --file=./database/mock_db/schema.sql'
-endef
-
-define build_frontend_js
-    $(VERBOSE) docker-compose run --rm --entrypoint=/bin/sh frontend /bin/sh -c "npm run build"
-endef
-
 # docker build and params define
 CWD := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 tag_version:="latest"
