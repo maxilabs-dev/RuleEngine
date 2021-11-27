@@ -1,0 +1,23 @@
+{
+  "name": "rule_engine",
+  "version": "1.0.0",
+  "description": "Rest API for database AI analysis and optimizer tool",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/main.js"
+  },
+  "author": "ilya shusterman",
+  "license": "private license",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mssql-connection-string": "^0.3.2",
+    "sequelize": "^6.12.0-alpha.1",
+    "tedious": "^14.0.0",
+    "util": "^0.12.4"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}

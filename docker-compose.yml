@@ -1,0 +1,34 @@
+# @format
+
+version: "3.9"
+
+services:
+  ####################################
+  ###         Applications         ###
+  ####################################
+
+  server:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./:/server
+    ports:
+      - "5000:5000"
+    networks:
+      - rule-engine-network
+    command: npm start
+
+  database:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      - SA_PASSWORD=Trustno1
+    ports:
+      - "1433:1433"
+    networks:
+      - rule-engine-network
+
+networks:
+  rule-engine-network:
+    driver: bridge
