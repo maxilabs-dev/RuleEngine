@@ -17,4 +17,11 @@ The system manages facts on each table. The facts, as the name suggests, are dat
 ## Installation
 
 - make install
-- make run_application
+
+## Run Application
+
+- make startapp
+
+# or alternative
+
+npm start

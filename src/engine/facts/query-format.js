@@ -1,6 +1,6 @@
 /** @format */
 
-class FactQueryGenerator {
+class FactQueryFormat {
   constructor(tableName) {
     this.tableName = tableName;
   }
@@ -10,5 +10,5 @@ class FactQueryGenerator {
 }
 
 module.exports = {
-  FactQueryGenerator,
+  FactQueryFormat,
 };

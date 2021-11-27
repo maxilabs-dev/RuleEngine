@@ -2,7 +2,7 @@
 
 const { Engine } = require("../engine");
 const { FactsQuerySets } = require("./facts-querysets");
-const { FactQueryGenerator } = require("./query-generate");
+const { FactQueryFormat } = require("./query-format");
 const { FactSerializer } = require("./serializer");
 
 class FactsTableEngine extends Engine {
@@ -10,7 +10,7 @@ class FactsTableEngine extends Engine {
     super();
     this.querySets = new FactsQuerySets();
     this.tableName = tableName;
-    this.queryGenerator = new FactQueryGenerator(tableName);
+    this.queryFormat = new FactQueryFormat(tableName);
   }
 
   async getReport() {
@@ -23,7 +23,7 @@ class FactsTableEngine extends Engine {
     return results;
   }
   async getFactResult(name, rawQuery) {
-    const runQuery = this.queryGenerator.generateQuery(rawQuery);
+    const runQuery = this.queryFormat.generateQuery(rawQuery);
     const result = await this.runRawQuery(runQuery);
     const factResult = new FactSerializer(name, result).getData();
     return factResult;

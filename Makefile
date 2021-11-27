@@ -28,6 +28,13 @@ tag_version:="latest"
 .PHONY: smoke
 smoke:
 	$(VERBOSE) npm run test
+.PHONY: install
+install:
+	$(VERBOSE) npm install
+	$(VERBOSE) docker-compose build server
+.PHONY: startrapp
+startrapp:
+	$(VERBOSE) docker-compose run --service-ports server
 .PHONY: fire_db
 fire_db:
 	$(VERBOSE) docker-compose up -d database
