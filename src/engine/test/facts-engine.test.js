@@ -17,5 +17,6 @@ it("engine factsEngine should pass either in production or testing environment",
   expect.assertions(2);
   const factsEngine = new FactsEngine();
   factsEngine.initializeEngine().then((isConnected) => expect(isConnected).toEqual(true));
-  return factsEngine.getAnalysisResponse("Students").then((results) => expect(isConnected).toEqual(true));
+  const expected = { "Number-of-indexes": 1, "Number-of-rows": 5, "has-primary-key": "true", "primary-key-count-columns": 1 };
+  return factsEngine.getAnalysisResponse("Students").then((results) => expect(results).toEqual(expected));
 });

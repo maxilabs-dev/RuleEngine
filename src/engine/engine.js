@@ -22,8 +22,12 @@ class Engine {
     return Isconnected;
   }
   async runRawQuery(rawQuery) {
-    const rawResult= await this.db.runRawQuery(rawQuery);
-    return rawResult? :
+    const rawResult = await this.db.runRawQuery(rawQuery);
+    const result = this.isSingleRecordResult(rawResult) ? rawResult[""] : rawResult;
+    return result;
+  }
+  isSingleRecordResult(rawResult) {
+    return rawResult && rawResult !== undefined && "" in rawResult;
   }
 }
 

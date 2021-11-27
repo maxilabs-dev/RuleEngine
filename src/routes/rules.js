@@ -8,7 +8,7 @@ class RulesRouterSerializer extends QuerySerializer {
   constructor(request, error = {}) {
     super(request, error, "tableName");
   }
-  getResponse() {}
+  getResponseData() {}
 }
 
 RulesRouter.use(function timeLog(req, res, next) {
@@ -21,7 +21,8 @@ RulesRouter.get("/", (request, response) => {
   if (rulesSerializer.isValid()) {
     response.status(rulesSerializer.error.code).send(rulesSerializer.error.errorMsg);
   }
-  response.send(rulesSerializer.getResponse());
+  const data = rulesSerializer.getResponseData();
+  response.send(data);
 });
 
 module.exports = {

@@ -11,6 +11,10 @@ class DataBaseLogger {
   }
 }
 
+const DEFAULT_QUERY_CONFIG = {
+  plain: true,
+  raw: true,
+};
 class Database {
   constructor(connection_string, dialect, session = undefined, QueryAsync = undefined) {
     this.dbString = new DatabaseStringConnection(connection_string, dialect);
@@ -37,11 +41,8 @@ class Database {
       return false;
     }
   }
-  async runRawQuery(queryString) {
-    const records = await this.session.query(queryString, {
-      plain: false,
-      raw: true,
-    });
+  async runRawQuery(queryString, config = {}) {
+    const records = await this.session.query(queryString, { ...DEFAULT_QUERY_CONFIG, ...config });
     return records;
   }
 }
