@@ -12,7 +12,7 @@ The system manages facts on each table. The facts, as the name suggests, are dat
 
 - Node js Rest API
 - Node js Jest testing framwork
-- Node Package
+- Node Package sequelize
 
 ## Installation
 
