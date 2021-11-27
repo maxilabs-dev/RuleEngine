@@ -11,7 +11,7 @@ class FactsRouterSerializer extends QuerySerializer {
   getResponseData() {
     const tableName = this.data;
     const factsEngine = new FactsEngine();
-    return factsEngine.getAnalysis(tableName);
+    return factsEngine.getTableReport(tableName);
   }
 }
 

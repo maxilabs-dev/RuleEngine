@@ -1,6 +1,5 @@
 /** @format */
 const { Sequelize } = require("sequelize");
-const { promisify } = require("util");
 
 const { DatabaseStringConnection } = require("./database-connection");
 
@@ -20,7 +19,6 @@ class Database {
     this.dbString = new DatabaseStringConnection(connection_string, dialect);
     this.dialect = dialect;
     this.session = session;
-    this.QueryAsync = QueryAsync;
   }
   initialize() {
     this.session = new Sequelize(this.dbString.getDatabase(), this.dbString.getUserName(), this.dbString.getPassword(), {
@@ -29,7 +27,6 @@ class Database {
       dialect: this.dialect,
       logging: (...msg) => new DataBaseLogger().handle(msg),
     });
-    this.QueryAsync = promisify(this.session.query).bind(this.session);
   }
   async testConnection() {
     try {
@@ -42,7 +39,8 @@ class Database {
     }
   }
   async runRawQuery(queryString, config = {}) {
-    const records = await this.session.query(queryString, { ...DEFAULT_QUERY_CONFIG, ...config });
+    const queryConfig = { ...DEFAULT_QUERY_CONFIG, ...config };
+    const records = await this.session.query(queryString, queryConfig);
     return records;
   }
 }
