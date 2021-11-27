@@ -22,6 +22,6 @@ The system manages facts on each table. The facts, as the name suggests, are dat
 
 - make startapp
 
-# or alternative
+#### or alternative
 
 npm start
