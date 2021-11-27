@@ -3,7 +3,7 @@
 const { Database } = require("../database/database");
 const { DATABASE_CONNECTION, DATABASE_DIALECT } = require("../../config");
 
-class Engine {
+class DatabaseManager {
   constructor(database_connection = DATABASE_CONNECTION, database_dialect = DATABASE_DIALECT) {
     this.db = new Database(database_connection, database_dialect);
   }
@@ -16,6 +16,14 @@ class Engine {
     return analysisRsponse;
   }
 
+  async runParallelDictResult(promises) {
+    const resultsArray = await Promise.all(promises);
+    let parallelResult = {};
+    resultsArray.map((result) => {
+      parallelResult = { ...parallelResult, ...result };
+    });
+    return parallelResult;
+  }
   async initializeEngine() {
     this.db.initialize();
     const Isconnected = await this.db.testConnection();
@@ -32,5 +40,5 @@ class Engine {
 }
 
 module.exports = {
-  Engine,
+  DatabaseManager,
 };

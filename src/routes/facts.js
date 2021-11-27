@@ -11,19 +11,28 @@ class FactsRouterSerializer extends QuerySerializer {
   getResponseData() {
     const tableName = this.data;
     const factsEngine = new FactsEngine();
-    return factsEngine.getTableReport(tableName);
+    try {
+      return factsEngine.getTableReport(tableName);
+    } catch (error) {
+      throw new Error({ code: 500, msg: error });
+    }
   }
 }
 
 const FactsRouter = express.Router();
 
-FactsRouter.get("/", (request, response) => {
+FactsRouter.get("/", async (request, response) => {
   const factsSerializer = new FactsRouterSerializer(request);
   if (!factsSerializer.isValid()) {
     response.status(factsSerializer.error.code).send(factsSerializer.error.errorMsg);
     return;
   }
-  const data = factsSerializer.getResponseData();
+  try {
+    const data = await factsSerializer.getResponseData();
+  } catch (error) {
+    response.status(error.code).send(error.msg);
+    return;
+  }
   response.send(data);
   return;
 });

@@ -5,6 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "test": "jest",
+    "start-dev": "nodemon src/main.js",
     "start": "node src/main.js"
   },
   "author": "ilya shusterman",
@@ -18,6 +19,7 @@
     "util": "^0.12.4"
   },
   "devDependencies": {
-    "jest": "^27.3.1"
+    "jest": "^27.3.1",
+    "nodemon": "^2.0.15"
   }
 }

@@ -1,9 +1,0 @@
-{
-  "fact": {
-    "Number-of-rows": "/facts/sql/Number-of-rows.sql",
-    "Number-of-indexes": "/facts/sql/Number-of-indexes.sql",
-    "has-primary-key": "/facts/sql/has-primary-key.sql",
-    "primary-key-count-columns": "/facts/sql/primary-key-count-columns.sql"
-  },
-  "rule": {}
-}
