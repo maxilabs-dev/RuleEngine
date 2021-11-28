@@ -1,6 +1,6 @@
 /** @format */
 
-const { DatabaseClient } = require("../database/database");
+const { DatabaseClient } = require("./database");
 const { DATABASE_CONNECTION, DATABASE_DIALECT } = require("../../config");
 
 class DatabaseManager {

@@ -1,6 +1,6 @@
 /** @format */
 
-const { DatabaseManager } = require("../database-manager");
+const { DatabaseManager } = require("../../database/database-manager");
 const { FactQueryFormat } = require("./query-format");
 const { FactSerializer } = require("./serializer");
 
