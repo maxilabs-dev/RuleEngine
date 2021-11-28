@@ -7,11 +7,11 @@ class RulesRouterSerializer extends QuerySerializer {
   constructor(request, error = {}) {
     super(request, error, "tableName");
   }
-  getResponseData() {
+  async getResponseData() {
     const tableName = this.data;
     const ruleEngine = new RuleEngine();
     try {
-      return ruleEngine.getTableReport(tableName);
+      return await ruleEngine.getTableReport(tableName);
     } catch (error) {
       throw new Error({ code: 500, msg: error });
     }
@@ -22,18 +22,18 @@ const RulesRouter = express.Router();
 
 RulesRouter.get("/", async (request, response) => {
   const rulesSerializer = new RulesRouterSerializer(request);
-  if (rulesSerializer.isValid()) {
+  if (!rulesSerializer.isValid()) {
     response.status(rulesSerializer.error.code).send(rulesSerializer.error.errorMsg);
     return;
   }
   try {
     const data = await rulesSerializer.getResponseData();
+    response.send(data);
+    return;
   } catch (error) {
-    response.status(error.code).send(error.msg);
+    response.status(500).send(error.message);
     return;
   }
-  response.send(data);
-  return;
 });
 
 module.exports = {

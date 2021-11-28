@@ -27,14 +27,15 @@ FactsRouter.get("/", async (request, response) => {
     response.status(factsSerializer.error.code).send(factsSerializer.error.errorMsg);
     return;
   }
+  let data;
   try {
-    const data = await factsSerializer.getResponseData();
+    data = await factsSerializer.getResponseData();
+    response.send(data);
+    return;
   } catch (error) {
-    response.status(error.code).send(error.msg);
+    response.status(500).send(error.message);
     return;
   }
-  response.send(data);
-  return;
 });
 
 module.exports = {

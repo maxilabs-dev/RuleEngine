@@ -32,12 +32,12 @@ smoke:
 install:
 	$(VERBOSE) npm install
 	$(VERBOSE) docker-compose build server
-.PHONY: startrapp
-startrapp:
+.PHONY: startapp
+startapp:
 	$(VERBOSE) docker-compose run --service-ports server
+.PHONY: startapp_js
+startapp_js:
+	$(VERBOSE) npm start
 .PHONY: fire_db
 fire_db:
 	$(VERBOSE) docker-compose up -d database
-.PHONY: build_frontend_js
-build_frontend_js:
-	$(VERBOSE) ($call build_frontend_js)

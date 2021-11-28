@@ -7,10 +7,11 @@ const { FactsEngine } = require("../facts/facts-engine");
 class RuleEngine {
   constructor() {
     this.factEngine = new FactsEngine();
+    this.ruleManager = new RuleManager();
   }
   async getTableReport(tableName) {
     const tableFactsReport = await this.factEngine.getTableReport(tableName);
-    const result = RuleManager.resolveRules(RulesImplemented, tableFactsReport);
+    const result = this.ruleManager.resolveRules(RulesImplemented, tableFactsReport);
     return result;
   }
 }

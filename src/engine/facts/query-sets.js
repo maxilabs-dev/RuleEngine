@@ -1,7 +1,7 @@
 /** @format */
 const path = require("path");
-const CURRENT_DIRNAME = `${path.resolve(".")}/src/engine`;
 const fs = require("fs");
+const CURRENT_DIRNAME = `${path.resolve(".")}/src/engine`;
 
 class QuerySets {
   constructor(path = "/facts/sql", dirname = CURRENT_DIRNAME) {

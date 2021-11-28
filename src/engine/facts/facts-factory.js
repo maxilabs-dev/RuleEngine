@@ -1,9 +1,9 @@
 /** @format */
 
-const { Fact } = require("./fact");
+const { Fact } = require("./dataclasses/fact");
 const { QuerySets } = require("./query-sets");
 
-class FactsImplemeneted {
+class FactsFactory {
   constructor() {
     this.querySets = new QuerySets();
   }
@@ -15,7 +15,7 @@ class FactsImplemeneted {
       new Fact("primary-key-count-columns", "has-primary-key"),
     ];
   }
-  getFactQueries() {
+  getFactTasks() {
     const facts = this.getImplemented().map((fact) => {
       fact.addQueryString(this.querySets.getQuery(fact.name));
       return fact;
@@ -25,5 +25,5 @@ class FactsImplemeneted {
 }
 
 module.exports = {
-  FactsImplemeneted,
+  FactsFactory,
 };

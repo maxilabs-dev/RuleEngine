@@ -10,7 +10,7 @@ it("We check the initialization facts table engine", () => {
 it("engine FactsTableEngine should pass either in production or testing environment", () => {
   const factsEngine = new FactsTableEngine();
   expect.assertions(1);
-  return factsEngine.initializeEngine().then((isConnected) => expect(isConnected).toEqual(true));
+  return factsEngine.initialize().then((isConnected) => expect(isConnected).toEqual(true));
 });
 
 it("engine factsEngine for Students table", () => {

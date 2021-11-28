@@ -5,7 +5,7 @@ class FactSerializer {
     this.name = name;
     this.value = value;
   }
-  getData() {
+  getFactResult() {
     return {
       [this.name]: this.value,
     };

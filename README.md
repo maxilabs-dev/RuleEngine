@@ -4,11 +4,28 @@
 
 ## Introduction
 
+- The system manages table facts
+- Facts are data points.
+- Fact possible types (string, int, Boolean or date).
+- Facts are conditions, queries run on a table.
+- Rules are (messages, recommendations, alerts) analyzed and based on facts.
+
 # Requiremets
 
-The system manages facts on each table. The facts, as the name suggests, are data points. Each fact is a string, int, Boolean or date. Those facts are not good nor bad, but just a recording of the current state of the table. Later the facts are evaluated by the rule engine who analyzes the current status, raises alerts and makes recommendations.
+- node js 16
+- docker, docker-compose (not a must)
 
-## Dependencies & Infrastructure
+## Infrastructure
+
+- Api Rest server
+  - facts Route
+  - rules Route
+- Engine
+  - database manager
+  - engine fact
+  - engine rule
+
+## Dependencies
 
 - Node js Rest API
 - Node js Jest testing framwork
@@ -16,12 +33,12 @@ The system manages facts on each table. The facts, as the name suggests, are dat
 
 ## Installation
 
-- make install
+- `make install`
 
 ## Run Application
 
-- make startapp
+- `make startapp`
+- `make startapp_js`
+- `npm start`
 
-#### or alternative
-
-npm start
+![Run Application]()
