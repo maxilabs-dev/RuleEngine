@@ -10,7 +10,13 @@
 - Facts are conditions, queries run on a table.
 - Rules are (messages, recommendations, alerts) analyzed and based on facts.
 
+### Doc Specification
+
+https://docs.google.com/document/d/1SlA-p_O2ILIqJPmDqQUKmrU9UbQLG5pX4oW7QVndzuY/edit
+
 # Design
+
+![Design](https://raw.githubusercontent.com/maxilabs-dev/RuleEngine/master/docs/RuleEngineSchema.jpg)
 
 ## Requiremets
 
