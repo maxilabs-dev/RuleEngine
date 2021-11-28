@@ -1,7 +1,7 @@
 /** @format */
 
 const { FactRunManager } = require("./fact-run-manager");
-const { FactTableDatabase } = require("./fact-table-database");
+const { FactTableDatabase } = require("./fact-database");
 const { FactsFactory } = require("./facts-factory");
 
 class FactsTableEngine {
