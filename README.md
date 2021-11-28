@@ -10,9 +10,11 @@
 - Facts are conditions, queries run on a table.
 - Rules are (messages, recommendations, alerts) analyzed and based on facts.
 
-# Requiremets
+# Design
 
-- node js 16
+## Requiremets
+
+- node 16
 - docker, docker-compose (not a must)
 
 ## Infrastructure
@@ -27,9 +29,9 @@
 
 ## Dependencies
 
-- Node js Rest API
-- Node js Jest testing framwork
+- Node js Rest API (express)
 - Node Package sequelize
+- Node js Jest testing framwork
 
 ## Installation
 
@@ -41,4 +43,15 @@
 - `make startapp_js`
 - `npm start`
 
-![Run Application]()
+## Run suit tests
+
+- `make smoke`
+
+![Run Application](https://raw.githubusercontent.com/maxilabs-dev/RuleEngine/master/docs/console_run.jpg)
+
+#### The api now answers on 2 paths
+
+- Facts - http://localhost:5000/facts?tableName=your_table_name
+- Rules - http://localhost:5000/rules?tableName=your_table_name
+
+![Api Example](https://raw.githubusercontent.com/maxilabs-dev/RuleEngine/master/docs/routes.jpg)

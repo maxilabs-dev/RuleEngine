@@ -14,7 +14,7 @@ const DEFAULT_QUERY_CONFIG = {
   plain: true,
   raw: true,
 };
-class Database {
+class DatabaseClient {
   constructor(connection_string, dialect, session = undefined, QueryAsync = undefined) {
     this.dbString = new DatabaseStringConnection(connection_string, dialect);
     this.dialect = dialect;
@@ -46,5 +46,5 @@ class Database {
 }
 
 module.exports = {
-  Database,
+  DatabaseClient,
 };

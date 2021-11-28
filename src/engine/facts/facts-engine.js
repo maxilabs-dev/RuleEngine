@@ -5,6 +5,7 @@ const { FactTableDatabase } = require("./fact-table-database");
 const { FactsFactory } = require("./facts-factory");
 
 class FactsTableEngine {
+  // get table facts , run facts by their dependencies
   constructor(tableName, factTasks = undefined) {
     this.factsFactory = new FactsFactory();
     this.db = new FactTableDatabase(tableName);
@@ -15,7 +16,7 @@ class FactsTableEngine {
   initialize() {
     return this.db.initialize();
   }
-  async getReport() {
+  async getFacts() {
     this.factTasks = this.factsFactory.getFactTasks();
     let result = {};
 
@@ -30,7 +31,7 @@ class FactsTableEngine {
     if (shouldSkip) {
       return await this.db.getFactResultDict(fact.name, result);
     }
-    const factResult = await this.db.resolveFactResult(fact.name, fact.queryString);
+    const factResult = await this.db.runFactTask(fact.name, fact.queryString);
 
     return factResult;
   }
@@ -40,7 +41,7 @@ class FactsEngine {
   async getTableReport(tableName) {
     const tableEngine = new FactsTableEngine(tableName);
     tableEngine.initialize();
-    return tableEngine.getReport();
+    return tableEngine.getFacts();
   }
 }
 

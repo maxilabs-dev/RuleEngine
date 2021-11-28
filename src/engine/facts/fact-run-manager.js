@@ -11,7 +11,7 @@ class FactRunManager {
     };
   }
   shouldSkipFact(fact, factResults) {
-    if (!fact.isDependency()) {
+    if (!fact.isFactNameRequired()) {
       return this.defaultNonPassValue;
     }
     if (!(fact.dependencyName in factResults)) {

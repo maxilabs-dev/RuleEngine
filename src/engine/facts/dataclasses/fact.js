@@ -1,13 +1,13 @@
 /** @format */
 
 class Fact {
-  constructor(name, dependencyName = undefined, queryString = undefined) {
+  constructor(name, factNameRequired = undefined, queryString = undefined) {
     this.name = name;
-    this.dependencyName = dependencyName;
+    this.factNameRequired = factNameRequired;
     this.queryString = queryString;
   }
-  isDependency() {
-    return this.dependencyName !== undefined;
+  isFactNameRequired() {
+    return this.factNameRequired !== undefined;
   }
   addQueryString(query) {
     this.queryString = query;

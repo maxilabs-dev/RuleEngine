@@ -1,11 +1,11 @@
 /** @format */
 
-const { Database } = require("../database/database");
+const { DatabaseClient } = require("../database/database");
 const { DATABASE_CONNECTION, DATABASE_DIALECT } = require("../../config");
 
 class DatabaseManager {
   constructor(database_connection = DATABASE_CONNECTION, database_dialect = DATABASE_DIALECT) {
-    this.db = new Database(database_connection, database_dialect);
+    this.db = new DatabaseClient(database_connection, database_dialect);
   }
   async initialize() {
     this.db.initialize();

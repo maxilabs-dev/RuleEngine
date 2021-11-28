@@ -12,7 +12,7 @@ class FactTableDatabase {
   initialize() {
     return this.db.initialize();
   }
-  async resolveFactResult(name, rawQuery) {
+  async runFactTask(name, rawQuery) {
     const result = await this.getQueryResult(rawQuery);
     const factResult = this.getFactResultDict(name, result);
     return factResult;

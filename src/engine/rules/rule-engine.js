@@ -1,6 +1,6 @@
 /** @format */
 
-const { RulesImplemented } = require("./rule-implemented");
+const { RuleFactory } = require("./rule-factory");
 const { RuleManager } = require("./rule-manager");
 const { FactsEngine } = require("../facts/facts-engine");
 
@@ -11,7 +11,8 @@ class RuleEngine {
   }
   async getTableReport(tableName) {
     const tableFactsReport = await this.factEngine.getTableReport(tableName);
-    const result = this.ruleManager.resolveRules(RulesImplemented, tableFactsReport);
+    const rules = RuleFactory();
+    const result = this.ruleManager.resolveRules(rules, tableFactsReport);
     return result;
   }
 }
